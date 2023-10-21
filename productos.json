@@ -1,0 +1,88 @@
+[
+    {
+        "imagen":"./assets/imagenes/azucar-ledesma.jpg",
+        "nombre": "azucar",
+        "marca": "ledesma",
+        "precio": 700.50,
+        "stock": 10
+    },
+    {
+        "imagen":"./assets/imagenes/azucar-chango.jpg",
+        "nombre": "azucar",
+        "marca": "chango",
+        "precio": 650.30,
+        "stock": 5
+    },
+    {
+        "imagen":"./assets/imagenes/yerba-mañanita.jpg",
+        "nombre": "yerba",
+        "marca": "mañanita",
+        "precio": 880.50,
+        "stock": 15
+    },
+    {
+        "imagen":"./assets/imagenes/yerba-playadito.jpg",
+        "nombre": "yerba",
+        "marca": "playadito",
+        "precio": 1880.90,
+        "stock": 4
+    },
+    {
+        "imagen":"./assets/imagenes/leche-la-serenisima.jpg",
+        "nombre": "leche",
+        "marca": "la serenisima",
+        "precio": 390,
+        "stock": 3
+    },
+    {
+        "imagen":"./assets/imagenes/cafe-arlistan.jpg",
+        "nombre": "cafe",
+        "marca": "arlistan",
+        "precio": 715.25,
+        "stock": 2
+    },
+    {
+        "imagen":"./assets/imagenes/te-la-virginia.jpg",
+        "nombre": "te",
+        "marca": "la virginia",
+        "precio": 334.80,
+        "stock": 1
+    },
+    {
+        "imagen":"./assets/imagenes/mate-cocido-union.jpg",
+        "nombre": "mate cocido",
+        "marca": "union",
+        "precio": 296.50,
+        "stock": 4
+    },
+    {
+        "imagen": "./assets/imagenes/galletitas-granix.jpg",
+        "nombre": "galletitas",
+        "marca": "granix",
+        "precio": 800.30,
+        "stock": 6
+    },
+    {
+        "imagen": "./assets/imagenes/galletitas-oreo.jpg",
+        "nombre": "galletitas",
+        "marca": "oreo",
+        "precio": 913,
+        "stock": 2
+    },
+    {
+        "imagen": "./assets/imagenes/manteca-la-serenisima.jpg",
+        "nombre": "manteca",
+        "marca": "la serenisima",
+        "precio": 587,
+        "stock": 3
+    },
+    {
+        "imagen": "./assets/imagenes/dulce-de-leche-la-serenisima.jpg",
+        "nombre": "dulce de leche",
+        "marca": "la serenisima",
+        "precio": 549,
+        "stock": 2
+    }
+]
+
+
