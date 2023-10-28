@@ -1,167 +1,92 @@
-let producto = [];
-let carrito = [];
+const opciones = document.getElementById(`opciones`)
+const verCarrito = document.getElementById(`verCarrito`)
+const modalContainer = document.getElementById(`modalContainer`)
+
+let carrito = JSON.parse(localStorage.getItem(`carrito`)) || [];
 
 
-
-async function obtenerProd () {
-    const response = await fetch (`./productos.json`);
+async function obtenerProd() {
+    const response = await fetch(`./productos.json`);
     if (response.ok) {
-        producto = await response.json ();
-        console.log (producto);
-    }else {
-        throw new Error(`${response.status}`)
-    }
-} 
+        producto = await response.json();
 
+        producto.forEach((product) => {
+            let content = document.createElement(`div`);
+            content.className = `card`
+            content.innerHTML = `
+            <img src="${product.imagen}"> 
+            <h3> ${product.nombre}</h3>
+            <h3> ${product.marca}</h3>
+            <p class="precio"> $${product.precio}</p>
+            `;
 
+            opciones.append(content);
 
-obtenerProd ();
+            let elegir = document.createElement(`button`);
+            elegir.className = `elegir`;
+            elegir.innerText = `elegir`;
 
-cargaProd = async () => {
-    await obtenerProd();
-    console.log ()
-    }
-    
-    //clase 16 1.50
+            content.append(elegir);
 
-    // .catch((error) => {
-    //     Toastify({
-    //         text: `Ocurrió un problema, por favor intente más tarde. ${error}`,
-    //         duration: 3000,
-    //         close: true,
-    //         gravity: "bottom",
-    //         position: "right",
-    //         stopOnFocus: true, // Prevents dismissing of toast on hover
-    //         style: {
-    //             background: "linear-gradient(to left, #ff4500, #dd6b55)",
-    //         },
-    //     }).showToast();
-    // });
+            elegir.addEventListener(`click`, () => {
 
+                const repetido = carrito.some((prodRepetido) => prodRepetido.id === product.id);
 
-const boton = document.getElementById(`boton`);
-
-boton.addEventListener(`click`, () => {
-    Swal.fire({
-        title: 'Atencion!',
-        text: 'Desea vaciar el Carrito?',
-        icon: 'question',
-        confirmButtonText: 'Si',
-        showCancelButton: true,
-        cancelButtonText: `Cancelar`,
-        footer: `<a href= ></a>`
-    }).then((result) => {
-        console.log(result);
-        if (result.isConfirmed) {
-            console.log(`el usuario apreto confirmar`); //vacia el carrito
-            //aca puedo iniciar el carrito vacio y seteo el carrito en local storage
-        }/* else {
-        console.log (`el usuario cancelo`);
-    }*/
-    });
-});
-
-
-const botonLogin = document.getElementById(`login`);
-const registro = {
-    nombreU: ``,
-    apellidoU: ``,
-    mailUsuario: ``,
-    contraseña: ``,
-}
-
-botonLogin.addEventListener(`click`, () => {
-    Swal.fire({
-        background: `#ffe4c4`,
-        title: 'LOGIN de USUARIO',
-        inputLabel: `Ingrese su nombre:`,
-        input: `text`,
-        inputPlaceholder: `Juan`,
-        confirmButtonText: 'Enviar',
-        confirmButtonColor: `#03a837`,
-        showCancelButton: true,
-        cancelButtonText: `Cancelar`,
-        cancelButtonColor: `#dd6b55`,
-    }).then((result) => {
-        console.log(result);
-        if (result.isConfirmed) {
-            registro.nombreU = result.value;
-            Swal.fire({
-                background: `#ffe4c4`,
-                title: 'LOGIN de USUARIO',
-                inputLabel: `Ingrese su apellido:`,
-                input: `text`,
-                inputPlaceholder: `Pérez`,
-                confirmButtonText: 'Enviar',
-                confirmButtonColor: `#03a837`,
-                showCancelButton: true,
-                cancelButtonText: `Cancelar`,
-                cancelButtonColor: `#dd6b55`,
-            }).then((result) => {
-                console.log(result);
-                if (result.isConfirmed) {
-                    registro.contraseña = result.value;
-                    Swal.fire({
-                        background: `#ffe4c4`,
-                        title: 'LOGIN de USUARIO',
-                        inputLabel: `Ingrese su correo electrónico:`,
-                        input: `email`,
-                        inputPlaceholder: `micorreo@micorreo.com`,
-                        confirmButtonText: 'Enviar',
-                        confirmButtonColor: `#03a837`,
-                        showCancelButton: true,
-                        cancelButtonText: `Cancelar`,
-                        cancelButtonColor: `#dd6b55`,
-                    }).then((result) => {
-                        console.log(result);
-                        if (result.isConfirmed) {
-                            registro.mailUsuario = result.value;
-                            Swal.fire({
-                                background: `#ffe4c4`,
-                                title: 'LOGIN de USUARIO',
-                                inputLabel: `Ingrese su contraseña:`,
-                                input: `password`,
-                                inputPlaceholder: `abc123`,
-                                confirmButtonText: 'Enviar',
-                                confirmButtonColor: `#03a837`,
-                                showCancelButton: true,
-                                cancelButtonText: `Cancelar`,
-                                cancelButtonColor: `#dd6b55`,
-                            }).then((result) => {
-                                console.log(result);
-                                if (result.isConfirmed) {
-                                    registro.contraseña = result.value;
-                                    Swal.fire({
-                                        background: `#ffe4c4`,
-                                        title: `¡Hola ${registro.nombreU}!`,
-                                        icon: `success`,
-                                        text: `Ahora puede realizar una compra`,
-                                        confirmButtonColor:`#deb887`,
-                                    });
-                                };
-                            });
-                        };
+                if (repetido === true) {
+                    carrito.map((prod) => {
+                        if (prod.id === product.id) {
+                            prod.cantidad++;
+                        }
                     });
+                } else {
+                    carrito.push({
+                        id: product.id,
+                        imagen: product.imagen,
+                        nombre: product.nombre,
+                        marca: product.marca,
+                        precio: product.precio,
+                        cantidad: product.cantidad,
+                    });
+                    
+                    salvarCarrito();
                 };
             });
-        };
-    });
-});
+        });
+    } else {
+        Toastify({
+            text: `Ocurrió un problema, por favor intente más tarde. ${error}`,
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: "linear-gradient(to left, #ff4500, #dd6b55)",
+            },
+        }).showToast();
+    };
+}
 
+obtenerProd();
 
+const salvarCarrito = () => {
+    localStorage.setItem(`carrito`, JSON.stringify(carrito));
+};
 
-/* producto agregado al carrito
-Toastify({
-  text: "This is a toast",
-  duration: 3000,
-  destination: "https://github.com/apvarun/toastify-js",
-  newWindow: true,
-  close: true,
-  gravity: "top", // `top` or `bottom`
-  position: "left", // `left`, `center` or `right`
-  stopOnFocus: true, // Prevents dismissing of toast on hover
-  style: {
-    background: "linear-gradient(to right, #00b09b, #96c93d)",
-  },
-  onClick: function(){} // Callback after click
-}).showToast();*/
+let categorias = document.querySelector("#categorias")
+
+fetch('https://api.escuelajs.co/api/v1/categories')
+    .then((response) => response.json())
+    .then((data) => {
+        const llegarApi = data.slice(1, 4)
+        llegarApi.forEach((info) => {
+            const apiContent = document.createElement(`div`)
+            apiContent.className = `card`
+            apiContent.innerHTML = `
+                        <h3> ${info.name} </h3>
+                        <img src= "https://picsum.photos/200/200">
+                        <p class= "enlaceApi"> ${info.image} </p>
+                        `;
+            categorias.append(apiContent)
+        })
+    })

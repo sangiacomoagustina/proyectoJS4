@@ -1,4 +1,6 @@
 class Productos {
+    
+    id;
 
     imagen;
 
@@ -8,9 +10,11 @@ class Productos {
 
     precio;
 
-    stock;
+    cantidad;
 
-    constructor(imagen, nombre, marca, precio, stock) {
+    constructor(id, imagen, nombre, marca, precio, cantidad) {
+
+        this.id = id;
 
         this.imagen = imagen;
 
@@ -20,7 +24,7 @@ class Productos {
 
         this.precio = precio;
 
-        this.stock = stock;
+        this.cantidad = cantidad;
 
     }
 

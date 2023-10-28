@@ -5,42 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto JS 4</title>
+    <link rel="shortcut icon" href="./assets/imagenes/carrito.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.32/sweetalert2.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.32/sweetalert2.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    </head>
+</head>
 
 <body>
+
     <header>
+
         <h1>¡bienvenido al carrito de compras!</h1>
+
     </header>
+
     <main>
-        <button id="boton">Confirmar</button>
-        <button id="login">login</button>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th></th>
-                    <th>Producto</th>
-                    <th>Marca</th>
-                    <th>Precio Unitario</th>
-                    <th>Cantidad</th>
-                </tr>
-            </thead>
-            <tbody id="products"></tbody>
-        </table>
+
+        <div class="inicio">
+            <div class="registro">
+                <button id="login" class="login-reg">login</button>
+                <h2 class="banner">compre tranquilo desde la comodidad de su hogar</h2>
+                <button class="ver-carrito" id="verCarrito">🛒</button>
+            </div>
+        </div>
+
+        <div id="opciones" class="opciones-content"></div>
+
+        <div id="modalContainer" class="modal-container"></div>
 
     </main>
 
 
     <footer>
-        <h4>¡gracias por su visita!</h4>
+
+        <h4 class="registro">Acceda a la categoría deseada:</h3>
+            <div id="categorias" class="opciones-content"></div>
+            <div class="contacto">
+                <a href="https://www.instagram.com/"><img src="./assets/imagenes/ins.png" alt="logo de instagram"></a>
+                <h4 class="contacto">¡gracias por su visita!</h4>
+                <a href="https://www.whatsapp.com/?lang=es_LA"><img src="./assets/imagenes/wha.png"
+                        alt="logo de whatsapp"></a>
+            </div>
+
+
     </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.32/sweetalert2.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./model/login.js"></script>
     <script src="./model/ag-prod.js"></script>
     <script src="./js/proyecto4.js"></script>
+    <script src="./model/pedido.js"></script>
 
 </body>
 
