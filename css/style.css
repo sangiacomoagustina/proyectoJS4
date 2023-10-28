@@ -297,3 +297,40 @@ footer {
     height: 50px;
     margin-top: 20px;
 }
+
+
+/*RESPONSIVE*/
+
+@media (max-width: 1080px) {
+
+    .modal-container>.modal-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}
+
+@media (max-width: 870px) {
+
+    .banner {
+        display: none;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    h1 {
+        font-size: 45px;
+    }
+
+    .card img {
+        width: 250px;
+    }
+
+    .contacto {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+}
